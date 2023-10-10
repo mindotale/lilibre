@@ -48,7 +48,8 @@ public sealed record Book(
     string Description,
     string Isbn,
     decimal Price,
-    int Pages);
+    int Pages,
+    int Year);
 
 public sealed record CreateBook(
     string Title,
@@ -57,7 +58,8 @@ public sealed record CreateBook(
     string Description,
     string Isbn,
     decimal Price,
-    int Pages);
+    int Pages,
+    int Year);
 
 public sealed record UpdateBook(
     string Title,
@@ -66,4 +68,5 @@ public sealed record UpdateBook(
     string Description,
     string Isbn,
     decimal Price,
-    int Pages);
+    int Pages,
+    int Year);
