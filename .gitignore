@@ -399,3 +399,4 @@ FodyWeavers.xsd
 
 # MSSQL
 /scripts/volumes/
+/src/Api/Lilibre.Persistence/Migrations
