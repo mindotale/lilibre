@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lilibre.Application;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lilibre.Api.V1.Genres;
 
@@ -6,34 +8,74 @@ namespace Lilibre.Api.V1.Genres;
 [ApiController]
 public class GenresController : ControllerBase
 {
-    [HttpGet]
-    public Task<ActionResult<IEnumerable<Genre>>> GetGenres(int offset = 0, int limit = 10)
+    private readonly IRepository<Application.Genre, int> _genreRepository;
+
+    public GenresController(IRepository<Application.Genre, int> genreRepository)
     {
-        throw new NotImplementedException();
+        _genreRepository = genreRepository;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Genre>>> GetGenres(int offset = 0, int limit = 10)
+    {
+        var genres = await _genreRepository.GetAllAsync(offset, limit);
+        var response = genres.Select(g => g.ToGenre());
+        return Ok(response);
     }
 
     [HttpGet("{id:int}")]
-    public Task<ActionResult<Genre>> GetGenre(int id)
+    public async Task<ActionResult<Genre>> GetGenre(int id)
     {
-        throw new NotImplementedException();
+        var genre = await _genreRepository.GetByIdAsync(id);
+        if (genre is null)
+        {
+            return NotFound();
+        }
+
+        var response = genre.ToGenre();
+        return Ok(response);
     }
 
     [HttpPost]
-    public Task<ActionResult<Genre>> CreateGenre(CreateGenre request)
+    public async Task<ActionResult<Genre>> CreateGenre(CreateGenre request)
     {
-        throw new NotImplementedException();
+        var genre = new Application.Genre
+        {
+            Id = 0,
+            Name = request.Name,
+            Description = request.Description
+        };
+
+        var genreId = await _genreRepository.AddAsync(genre);
+        var response = new Genre(genreId, genre.Name, genre.Description);
+        return CreatedAtAction(nameof(GetGenre), new { id = genreId }, response);
     }
 
     [HttpPut("{id:int}")]
-    public Task<ActionResult> UpdateGenre(int id, UpdateGenre request)
+    public async Task<ActionResult> UpdateGenre(int id, UpdateGenre request)
     {
-        throw new NotImplementedException();
+        var genre = await _genreRepository.GetByIdAsync(id);
+        if (genre is null)
+        {
+            return NotFound();
+        }
+
+        genre.Name = request.Name;
+        genre.Description = request.Description;
+        await _genreRepository.UpdateAsync(genre);
+        return NoContent();
     }
 
     [HttpDelete("{id:int}")]
-    public Task<ActionResult> DeleteGenre(int id)
+    public async Task<ActionResult> DeleteGenre(int id)
     {
-        throw new NotImplementedException();
+        var deleted = await _genreRepository.DeleteAsync(id);
+        if (!deleted)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
 }
 
