@@ -22,9 +22,9 @@ public static class PersistenceConfigurationExtensions
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IRepository<Book, int>, Repository<Book, int>>();
-        services.AddScoped<IRepository<Author, int>, Repository<Author, int>>();
-        services.AddScoped<IRepository<Genre, int>, Repository<Genre, int>>();
+        services.AddScoped<IRepository<Book, int>, BookRepository>();
+        services.AddScoped<IRepository<Author, int>, AuthorRepository>();
+        services.AddScoped<IRepository<Genre, int>, GenreRepository>();
 
         return services;
     }
