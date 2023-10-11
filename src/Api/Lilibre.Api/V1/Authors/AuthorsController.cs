@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lilibre.Application;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lilibre.Api.V1.Authors;
 
@@ -6,34 +8,76 @@ namespace Lilibre.Api.V1.Authors;
 [ApiController]
 public class AuthorsController : ControllerBase
 {
-    [HttpGet]
-    public Task<ActionResult<IEnumerable<Author>>> GetAuthors(int offset = 0, int limit = 10)
+    private readonly IRepository<Application.Author, int> _authorRepository;
+
+    public AuthorsController(IRepository<Application.Author, int> authorRepository)
     {
-        throw new NotImplementedException();
+        _authorRepository = authorRepository;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Author>>> GetAuthors(int offset = 0, int limit = 10)
+    {
+        var authors = await _authorRepository.GetAllAsync(offset, limit);
+        var response = authors.Select(a => a.ToAuthor());
+        return Ok(response);
     }
 
     [HttpGet("{id:int}")]
-    public Task<ActionResult<Author>> GetAuthor(int id)
+    public async Task<ActionResult<Author>> GetAuthor(int id)
     {
-        throw new NotImplementedException();
+        var author = await _authorRepository.GetByIdAsync(id);
+        if (author is null)
+        {
+            return NotFound();
+        }
+
+        var response = author.ToAuthor();
+        return Ok(response);
     }
 
     [HttpPost]
-    public Task<ActionResult<Author>> CreateAuthor(CreateAuthor request)
+    public async Task<ActionResult<Author>> CreateAuthor(CreateAuthor request)
     {
-        throw new NotImplementedException();
+        var author = new Application.Author
+        {
+            Id = 0,
+            Name = request.Name,
+            Description = request.Description,
+            BirthYear = request.BirthYear
+        };
+
+        var authorId = await _authorRepository.AddAsync(author);
+        var response = new Author(authorId, author.Name, author.Description, author.BirthYear);
+        return CreatedAtAction(nameof(GetAuthor), new { id = authorId }, response);
     }
 
     [HttpPut("{id:int}")]
-    public Task<ActionResult> UpdateAuthor(int id, UpdateAuthor request)
+    public async Task<ActionResult> UpdateAuthor(int id, UpdateAuthor request)
     {
-        throw new NotImplementedException();
+        var author = await _authorRepository.GetByIdAsync(id);
+        if (author is null)
+        {
+            return NotFound();
+        }
+
+        author.Name = request.Name;
+        author.Description = request.Description;
+        author.BirthYear = request.BirthYear;
+        await _authorRepository.UpdateAsync(author);
+        return NoContent();
     }
 
     [HttpDelete("{id:int}")]
-    public Task<ActionResult> DeleteAuthor(int id)
+    public async Task<ActionResult> DeleteAuthor(int id)
     {
-        throw new NotImplementedException();
+        var deleted = await _authorRepository.DeleteAsync(id);
+        if (!deleted)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
 }
 
