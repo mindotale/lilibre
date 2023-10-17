@@ -397,6 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# MSSQL
+# Docker
 /scripts/volumes/
-/src/Api/Lilibre.Persistence/Migrations
+/volumes/
