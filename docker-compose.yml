@@ -1,0 +1,32 @@
+version: '3.8'
+
+name: lilibre
+
+services:
+  db:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: Password!
+      MSSQL_PID: Developer
+    ports:
+      - 1433:1433
+    volumes:
+      - ./volumes/mssql/data:/var/opt/mssql/data
+      - ./volumes/mssql/log:/var/opt/mssql/log
+      - ./volumes/mssql/secrets:/var/opt/mssql/secrets
+    restart: unless-stopped
+
+  api:
+    container_name: api
+    depends_on:
+      - db
+    build:
+      context: ./src/Api/
+      dockerfile: Dockerfile
+    ports:
+      - 5000:80
+    volumes:
+      - ./src/Api/Api/appsettings.json:/app/appsettings.json
+      - ./src/Api/Api/appsettings.Development.json:/app/appsettings.Development.json
