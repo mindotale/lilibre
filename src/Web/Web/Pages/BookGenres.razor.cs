@@ -43,14 +43,14 @@ public partial class BookGenres
 
     protected async Task AddButtonClick(MouseEventArgs args)
     {
-        await DialogService.OpenAsync<AddBookGenre>("Add BookGenre");
+        await DialogService.OpenAsync<AddBookGenre>("Add Book Genre");
         await grid0.Reload();
     }
 
     protected async Task EditRow(BookGenre args)
     {
         await DialogService.OpenAsync<EditBookGenre>(
-            "Edit BookGenre",
+            "Edit Book Genre",
             new Dictionary<string, object>
             {
                 { "BookId", args.BookId },
@@ -79,7 +79,7 @@ public partial class BookGenres
                 {
                     Severity = NotificationSeverity.Error,
                     Summary = "Error",
-                    Detail = "Unable to delete BookGenre"
+                    Detail = "Unable to delete Book Genre"
                 });
         }
     }

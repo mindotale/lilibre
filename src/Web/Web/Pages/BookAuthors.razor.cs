@@ -43,14 +43,14 @@ public partial class BookAuthors
 
     protected async Task AddButtonClick(MouseEventArgs args)
     {
-        await DialogService.OpenAsync<AddBookAuthor>("Add BookAuthor");
+        await DialogService.OpenAsync<AddBookAuthor>("Add Book Author");
         await grid0.Reload();
     }
 
     protected async Task EditRow(BookAuthor args)
     {
         await DialogService.OpenAsync<EditBookAuthor>(
-            "Edit BookAuthor",
+            "Edit Book Author",
             new Dictionary<string, object>
             {
                 { "AuthorsId", args.AuthorsId },
@@ -79,7 +79,7 @@ public partial class BookAuthors
                 {
                     Severity = NotificationSeverity.Error,
                     Summary = "Error",
-                    Detail = "Unable to delete BookAuthor"
+                    Detail = "Unable to delete Book Author"
                 });
         }
     }
