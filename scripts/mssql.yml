@@ -13,7 +13,7 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - ./volumes/mssql/data:/var/opt/mssql/data
-      - ./volumes/mssql/log:/var/opt/mssql/log
-      - ./volumes/mssql/secrets:/var/opt/mssql/secrets
+      - ./.volumes/mssql/data:/var/opt/mssql/data
+      - ./.volumes/mssql/log:/var/opt/mssql/log
+      - ./.volumes/mssql/secrets:/var/opt/mssql/secrets
     restart: unless-stopped
