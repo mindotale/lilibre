@@ -398,5 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Docker
-/scripts/volumes/
-/volumes/
+**/.volumes/

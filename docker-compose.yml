@@ -1,9 +1,9 @@
 version: '3.8'
 
-name: lilibre-mssql
+name: lilibre
 
 services:
-  db:
+  mssql:
     container_name: mssql
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
@@ -17,3 +17,13 @@ services:
       - ./.volumes/mssql/log:/var/opt/mssql/log
       - ./.volumes/mssql/secrets:/var/opt/mssql/secrets
     restart: unless-stopped
+
+  api:
+    container_name: api
+    depends_on:
+      - mssql
+    build:
+      context: ./src/Api/
+      dockerfile: Dockerfile
+    ports:
+      - 5000:80

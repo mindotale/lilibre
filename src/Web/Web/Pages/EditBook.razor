@@ -1,0 +1,63 @@
+@page "/edit-book"
+
+<PageTitle>Edit Book</PageTitle>
+
+<RadzenColumn SizeMD="12">
+    <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Book</RadzenAlert>
+    <RadzenTemplateForm TItem="Book" Data="@book" Visible="@(book != null)" Submit="@FormSubmit">
+        <RadzenStack>
+            <RadzenFormField Text="Title" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@book.Title" Name="Title"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Title" Text="Title is required"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Description" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@book.Description" Name="Description"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Description" Text="Description is required"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Isbn" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@book.Isbn" Name="Isbn"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Isbn" Text="Isbn is required"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Price" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@book.Price" Name="Price"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Price" Text="Price is required"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Pages" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@book.Pages" Name="Pages"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Pages" Text="Pages is required"/>
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Year" Variant="Variant.Filled">
+                <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@book.Year" Name="Year"/>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Year" Text="Year is required"/>
+                </Helper>
+            </RadzenFormField>
+        </RadzenStack>
+        <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+            <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat"/>
+            <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"/>
+        </RadzenStack>
+    </RadzenTemplateForm>
+</RadzenColumn>
