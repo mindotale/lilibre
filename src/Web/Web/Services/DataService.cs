@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Radzen;
 
 using Lilibre.Web.Data;
+using Lilibre.Web.Models;
 
 namespace Lilibre.Web
 {
@@ -79,9 +80,9 @@ namespace Lilibre.Web
             navigationManager.NavigateTo(query != null ? query.ToUrl($"export/data/authors/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/data/authors/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
         }
 
-        partial void OnAuthorsRead(ref IQueryable<Lilibre.Web.Models.Data.Author> items);
+        partial void OnAuthorsRead(ref IQueryable<Author> items);
 
-        public async Task<IQueryable<Lilibre.Web.Models.Data.Author>> GetAuthors(Query query = null)
+        public async Task<IQueryable<Author>> GetAuthors(Query query = null)
         {
             var items = Context.Authors.AsQueryable();
 
@@ -105,11 +106,11 @@ namespace Lilibre.Web
             return await Task.FromResult(items);
         }
 
-        partial void OnAuthorGet(Lilibre.Web.Models.Data.Author item);
-        partial void OnGetAuthorById(ref IQueryable<Lilibre.Web.Models.Data.Author> items);
+        partial void OnAuthorGet(Author item);
+        partial void OnGetAuthorById(ref IQueryable<Author> items);
 
 
-        public async Task<Lilibre.Web.Models.Data.Author> GetAuthorById(int id)
+        public async Task<Author> GetAuthorById(int id)
         {
             var items = Context.Authors
                               .AsNoTracking()
@@ -125,10 +126,10 @@ namespace Lilibre.Web
             return await Task.FromResult(itemToReturn);
         }
 
-        partial void OnAuthorCreated(Lilibre.Web.Models.Data.Author item);
-        partial void OnAfterAuthorCreated(Lilibre.Web.Models.Data.Author item);
+        partial void OnAuthorCreated(Author item);
+        partial void OnAfterAuthorCreated(Author item);
 
-        public async Task<Lilibre.Web.Models.Data.Author> CreateAuthor(Lilibre.Web.Models.Data.Author author)
+        public async Task<Author> CreateAuthor(Author author)
         {
             OnAuthorCreated(author);
 
@@ -157,7 +158,7 @@ namespace Lilibre.Web
             return author;
         }
 
-        public async Task<Lilibre.Web.Models.Data.Author> CancelAuthorChanges(Lilibre.Web.Models.Data.Author item)
+        public async Task<Author> CancelAuthorChanges(Author item)
         {
             var entityToCancel = Context.Entry(item);
             if (entityToCancel.State == EntityState.Modified)
@@ -169,10 +170,10 @@ namespace Lilibre.Web
             return item;
         }
 
-        partial void OnAuthorUpdated(Lilibre.Web.Models.Data.Author item);
-        partial void OnAfterAuthorUpdated(Lilibre.Web.Models.Data.Author item);
+        partial void OnAuthorUpdated(Author item);
+        partial void OnAfterAuthorUpdated(Author item);
 
-        public async Task<Lilibre.Web.Models.Data.Author> UpdateAuthor(int id, Lilibre.Web.Models.Data.Author author)
+        public async Task<Author> UpdateAuthor(int id, Author author)
         {
             OnAuthorUpdated(author);
 
@@ -196,10 +197,10 @@ namespace Lilibre.Web
             return author;
         }
 
-        partial void OnAuthorDeleted(Lilibre.Web.Models.Data.Author item);
-        partial void OnAfterAuthorDeleted(Lilibre.Web.Models.Data.Author item);
+        partial void OnAuthorDeleted(Author item);
+        partial void OnAfterAuthorDeleted(Author item);
 
-        public async Task<Lilibre.Web.Models.Data.Author> DeleteAuthor(int id)
+        public async Task<Author> DeleteAuthor(int id)
         {
             var itemToDelete = Context.Authors
                               .Where(i => i.Id == id)
@@ -241,9 +242,9 @@ namespace Lilibre.Web
             navigationManager.NavigateTo(query != null ? query.ToUrl($"export/data/bookauthors/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/data/bookauthors/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
         }
 
-        partial void OnBookAuthorsRead(ref IQueryable<Lilibre.Web.Models.Data.BookAuthor> items);
+        partial void OnBookAuthorsRead(ref IQueryable<BookAuthor> items);
 
-        public async Task<IQueryable<Lilibre.Web.Models.Data.BookAuthor>> GetBookAuthors(Query query = null)
+        public async Task<IQueryable<BookAuthor>> GetBookAuthors(Query query = null)
         {
             var items = Context.BookAuthors.AsQueryable();
 
@@ -269,11 +270,11 @@ namespace Lilibre.Web
             return await Task.FromResult(items);
         }
 
-        partial void OnBookAuthorGet(Lilibre.Web.Models.Data.BookAuthor item);
-        partial void OnGetBookAuthorByAuthorsIdAndBookId(ref IQueryable<Lilibre.Web.Models.Data.BookAuthor> items);
+        partial void OnBookAuthorGet(BookAuthor item);
+        partial void OnGetBookAuthorByAuthorsIdAndBookId(ref IQueryable<BookAuthor> items);
 
 
-        public async Task<Lilibre.Web.Models.Data.BookAuthor> GetBookAuthorByAuthorsIdAndBookId(int authorsid, int bookid)
+        public async Task<BookAuthor> GetBookAuthorByAuthorsIdAndBookId(int authorsid, int bookid)
         {
             var items = Context.BookAuthors
                               .AsNoTracking()
@@ -291,10 +292,10 @@ namespace Lilibre.Web
             return await Task.FromResult(itemToReturn);
         }
 
-        partial void OnBookAuthorCreated(Lilibre.Web.Models.Data.BookAuthor item);
-        partial void OnAfterBookAuthorCreated(Lilibre.Web.Models.Data.BookAuthor item);
+        partial void OnBookAuthorCreated(BookAuthor item);
+        partial void OnAfterBookAuthorCreated(BookAuthor item);
 
-        public async Task<Lilibre.Web.Models.Data.BookAuthor> CreateBookAuthor(Lilibre.Web.Models.Data.BookAuthor bookauthor)
+        public async Task<BookAuthor> CreateBookAuthor(BookAuthor bookauthor)
         {
             OnBookAuthorCreated(bookauthor);
 
@@ -323,7 +324,7 @@ namespace Lilibre.Web
             return bookauthor;
         }
 
-        public async Task<Lilibre.Web.Models.Data.BookAuthor> CancelBookAuthorChanges(Lilibre.Web.Models.Data.BookAuthor item)
+        public async Task<BookAuthor> CancelBookAuthorChanges(BookAuthor item)
         {
             var entityToCancel = Context.Entry(item);
             if (entityToCancel.State == EntityState.Modified)
@@ -335,10 +336,10 @@ namespace Lilibre.Web
             return item;
         }
 
-        partial void OnBookAuthorUpdated(Lilibre.Web.Models.Data.BookAuthor item);
-        partial void OnAfterBookAuthorUpdated(Lilibre.Web.Models.Data.BookAuthor item);
+        partial void OnBookAuthorUpdated(BookAuthor item);
+        partial void OnAfterBookAuthorUpdated(BookAuthor item);
 
-        public async Task<Lilibre.Web.Models.Data.BookAuthor> UpdateBookAuthor(int authorsid, int bookid, Lilibre.Web.Models.Data.BookAuthor bookauthor)
+        public async Task<BookAuthor> UpdateBookAuthor(int authorsid, int bookid, BookAuthor bookauthor)
         {
             OnBookAuthorUpdated(bookauthor);
 
@@ -362,10 +363,10 @@ namespace Lilibre.Web
             return bookauthor;
         }
 
-        partial void OnBookAuthorDeleted(Lilibre.Web.Models.Data.BookAuthor item);
-        partial void OnAfterBookAuthorDeleted(Lilibre.Web.Models.Data.BookAuthor item);
+        partial void OnBookAuthorDeleted(BookAuthor item);
+        partial void OnAfterBookAuthorDeleted(BookAuthor item);
 
-        public async Task<Lilibre.Web.Models.Data.BookAuthor> DeleteBookAuthor(int authorsid, int bookid)
+        public async Task<BookAuthor> DeleteBookAuthor(int authorsid, int bookid)
         {
             var itemToDelete = Context.BookAuthors
                               .Where(i => i.AuthorsId == authorsid && i.BookId == bookid)
@@ -406,9 +407,9 @@ namespace Lilibre.Web
             navigationManager.NavigateTo(query != null ? query.ToUrl($"export/data/bookgenres/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/data/bookgenres/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
         }
 
-        partial void OnBookGenresRead(ref IQueryable<Lilibre.Web.Models.Data.BookGenre> items);
+        partial void OnBookGenresRead(ref IQueryable<BookGenre> items);
 
-        public async Task<IQueryable<Lilibre.Web.Models.Data.BookGenre>> GetBookGenres(Query query = null)
+        public async Task<IQueryable<BookGenre>> GetBookGenres(Query query = null)
         {
             var items = Context.BookGenres.AsQueryable();
 
@@ -434,11 +435,11 @@ namespace Lilibre.Web
             return await Task.FromResult(items);
         }
 
-        partial void OnBookGenreGet(Lilibre.Web.Models.Data.BookGenre item);
-        partial void OnGetBookGenreByBookIdAndGenresId(ref IQueryable<Lilibre.Web.Models.Data.BookGenre> items);
+        partial void OnBookGenreGet(BookGenre item);
+        partial void OnGetBookGenreByBookIdAndGenresId(ref IQueryable<BookGenre> items);
 
 
-        public async Task<Lilibre.Web.Models.Data.BookGenre> GetBookGenreByBookIdAndGenresId(int bookid, int genresid)
+        public async Task<BookGenre> GetBookGenreByBookIdAndGenresId(int bookid, int genresid)
         {
             var items = Context.BookGenres
                               .AsNoTracking()
@@ -456,10 +457,10 @@ namespace Lilibre.Web
             return await Task.FromResult(itemToReturn);
         }
 
-        partial void OnBookGenreCreated(Lilibre.Web.Models.Data.BookGenre item);
-        partial void OnAfterBookGenreCreated(Lilibre.Web.Models.Data.BookGenre item);
+        partial void OnBookGenreCreated(BookGenre item);
+        partial void OnAfterBookGenreCreated(BookGenre item);
 
-        public async Task<Lilibre.Web.Models.Data.BookGenre> CreateBookGenre(Lilibre.Web.Models.Data.BookGenre bookgenre)
+        public async Task<BookGenre> CreateBookGenre(BookGenre bookgenre)
         {
             OnBookGenreCreated(bookgenre);
 
@@ -488,7 +489,7 @@ namespace Lilibre.Web
             return bookgenre;
         }
 
-        public async Task<Lilibre.Web.Models.Data.BookGenre> CancelBookGenreChanges(Lilibre.Web.Models.Data.BookGenre item)
+        public async Task<BookGenre> CancelBookGenreChanges(BookGenre item)
         {
             var entityToCancel = Context.Entry(item);
             if (entityToCancel.State == EntityState.Modified)
@@ -500,10 +501,10 @@ namespace Lilibre.Web
             return item;
         }
 
-        partial void OnBookGenreUpdated(Lilibre.Web.Models.Data.BookGenre item);
-        partial void OnAfterBookGenreUpdated(Lilibre.Web.Models.Data.BookGenre item);
+        partial void OnBookGenreUpdated(BookGenre item);
+        partial void OnAfterBookGenreUpdated(BookGenre item);
 
-        public async Task<Lilibre.Web.Models.Data.BookGenre> UpdateBookGenre(int bookid, int genresid, Lilibre.Web.Models.Data.BookGenre bookgenre)
+        public async Task<BookGenre> UpdateBookGenre(int bookid, int genresid, BookGenre bookgenre)
         {
             OnBookGenreUpdated(bookgenre);
 
@@ -527,10 +528,10 @@ namespace Lilibre.Web
             return bookgenre;
         }
 
-        partial void OnBookGenreDeleted(Lilibre.Web.Models.Data.BookGenre item);
-        partial void OnAfterBookGenreDeleted(Lilibre.Web.Models.Data.BookGenre item);
+        partial void OnBookGenreDeleted(BookGenre item);
+        partial void OnAfterBookGenreDeleted(BookGenre item);
 
-        public async Task<Lilibre.Web.Models.Data.BookGenre> DeleteBookGenre(int bookid, int genresid)
+        public async Task<BookGenre> DeleteBookGenre(int bookid, int genresid)
         {
             var itemToDelete = Context.BookGenres
                               .Where(i => i.BookId == bookid && i.GenresId == genresid)
@@ -571,9 +572,9 @@ namespace Lilibre.Web
             navigationManager.NavigateTo(query != null ? query.ToUrl($"export/data/books/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/data/books/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
         }
 
-        partial void OnBooksRead(ref IQueryable<Lilibre.Web.Models.Data.Book> items);
+        partial void OnBooksRead(ref IQueryable<Book> items);
 
-        public async Task<IQueryable<Lilibre.Web.Models.Data.Book>> GetBooks(Query query = null)
+        public async Task<IQueryable<Book>> GetBooks(Query query = null)
         {
             var items = Context.Books.AsQueryable();
 
@@ -597,11 +598,11 @@ namespace Lilibre.Web
             return await Task.FromResult(items);
         }
 
-        partial void OnBookGet(Lilibre.Web.Models.Data.Book item);
-        partial void OnGetBookById(ref IQueryable<Lilibre.Web.Models.Data.Book> items);
+        partial void OnBookGet(Book item);
+        partial void OnGetBookById(ref IQueryable<Book> items);
 
 
-        public async Task<Lilibre.Web.Models.Data.Book> GetBookById(int id)
+        public async Task<Book> GetBookById(int id)
         {
             var items = Context.Books
                               .AsNoTracking()
@@ -617,10 +618,10 @@ namespace Lilibre.Web
             return await Task.FromResult(itemToReturn);
         }
 
-        partial void OnBookCreated(Lilibre.Web.Models.Data.Book item);
-        partial void OnAfterBookCreated(Lilibre.Web.Models.Data.Book item);
+        partial void OnBookCreated(Book item);
+        partial void OnAfterBookCreated(Book item);
 
-        public async Task<Lilibre.Web.Models.Data.Book> CreateBook(Lilibre.Web.Models.Data.Book book)
+        public async Task<Book> CreateBook(Book book)
         {
             OnBookCreated(book);
 
@@ -649,7 +650,7 @@ namespace Lilibre.Web
             return book;
         }
 
-        public async Task<Lilibre.Web.Models.Data.Book> CancelBookChanges(Lilibre.Web.Models.Data.Book item)
+        public async Task<Book> CancelBookChanges(Book item)
         {
             var entityToCancel = Context.Entry(item);
             if (entityToCancel.State == EntityState.Modified)
@@ -661,10 +662,10 @@ namespace Lilibre.Web
             return item;
         }
 
-        partial void OnBookUpdated(Lilibre.Web.Models.Data.Book item);
-        partial void OnAfterBookUpdated(Lilibre.Web.Models.Data.Book item);
+        partial void OnBookUpdated(Book item);
+        partial void OnAfterBookUpdated(Book item);
 
-        public async Task<Lilibre.Web.Models.Data.Book> UpdateBook(int id, Lilibre.Web.Models.Data.Book book)
+        public async Task<Book> UpdateBook(int id, Book book)
         {
             OnBookUpdated(book);
 
@@ -688,10 +689,10 @@ namespace Lilibre.Web
             return book;
         }
 
-        partial void OnBookDeleted(Lilibre.Web.Models.Data.Book item);
-        partial void OnAfterBookDeleted(Lilibre.Web.Models.Data.Book item);
+        partial void OnBookDeleted(Book item);
+        partial void OnAfterBookDeleted(Book item);
 
-        public async Task<Lilibre.Web.Models.Data.Book> DeleteBook(int id)
+        public async Task<Book> DeleteBook(int id)
         {
             var itemToDelete = Context.Books
                               .Where(i => i.Id == id)
@@ -734,9 +735,9 @@ namespace Lilibre.Web
             navigationManager.NavigateTo(query != null ? query.ToUrl($"export/data/genres/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')") : $"export/data/genres/csv(fileName='{(!string.IsNullOrEmpty(fileName) ? UrlEncoder.Default.Encode(fileName) : "Export")}')", true);
         }
 
-        partial void OnGenresRead(ref IQueryable<Lilibre.Web.Models.Data.Genre> items);
+        partial void OnGenresRead(ref IQueryable<Genre> items);
 
-        public async Task<IQueryable<Lilibre.Web.Models.Data.Genre>> GetGenres(Query query = null)
+        public async Task<IQueryable<Genre>> GetGenres(Query query = null)
         {
             var items = Context.Genres.AsQueryable();
 
@@ -760,11 +761,11 @@ namespace Lilibre.Web
             return await Task.FromResult(items);
         }
 
-        partial void OnGenreGet(Lilibre.Web.Models.Data.Genre item);
-        partial void OnGetGenreById(ref IQueryable<Lilibre.Web.Models.Data.Genre> items);
+        partial void OnGenreGet(Genre item);
+        partial void OnGetGenreById(ref IQueryable<Genre> items);
 
 
-        public async Task<Lilibre.Web.Models.Data.Genre> GetGenreById(int id)
+        public async Task<Genre> GetGenreById(int id)
         {
             var items = Context.Genres
                               .AsNoTracking()
@@ -780,10 +781,10 @@ namespace Lilibre.Web
             return await Task.FromResult(itemToReturn);
         }
 
-        partial void OnGenreCreated(Lilibre.Web.Models.Data.Genre item);
-        partial void OnAfterGenreCreated(Lilibre.Web.Models.Data.Genre item);
+        partial void OnGenreCreated(Genre item);
+        partial void OnAfterGenreCreated(Genre item);
 
-        public async Task<Lilibre.Web.Models.Data.Genre> CreateGenre(Lilibre.Web.Models.Data.Genre genre)
+        public async Task<Genre> CreateGenre(Genre genre)
         {
             OnGenreCreated(genre);
 
@@ -812,7 +813,7 @@ namespace Lilibre.Web
             return genre;
         }
 
-        public async Task<Lilibre.Web.Models.Data.Genre> CancelGenreChanges(Lilibre.Web.Models.Data.Genre item)
+        public async Task<Genre> CancelGenreChanges(Genre item)
         {
             var entityToCancel = Context.Entry(item);
             if (entityToCancel.State == EntityState.Modified)
@@ -824,10 +825,10 @@ namespace Lilibre.Web
             return item;
         }
 
-        partial void OnGenreUpdated(Lilibre.Web.Models.Data.Genre item);
-        partial void OnAfterGenreUpdated(Lilibre.Web.Models.Data.Genre item);
+        partial void OnGenreUpdated(Genre item);
+        partial void OnAfterGenreUpdated(Genre item);
 
-        public async Task<Lilibre.Web.Models.Data.Genre> UpdateGenre(int id, Lilibre.Web.Models.Data.Genre genre)
+        public async Task<Genre> UpdateGenre(int id, Genre genre)
         {
             OnGenreUpdated(genre);
 
@@ -851,10 +852,10 @@ namespace Lilibre.Web
             return genre;
         }
 
-        partial void OnGenreDeleted(Lilibre.Web.Models.Data.Genre item);
-        partial void OnAfterGenreDeleted(Lilibre.Web.Models.Data.Genre item);
+        partial void OnGenreDeleted(Genre item);
+        partial void OnAfterGenreDeleted(Genre item);
 
-        public async Task<Lilibre.Web.Models.Data.Genre> DeleteGenre(int id)
+        public async Task<Genre> DeleteGenre(int id)
         {
             var itemToDelete = Context.Genres
                               .Where(i => i.Id == id)

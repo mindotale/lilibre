@@ -15,17 +15,17 @@
     <RadzenRow>
       <RadzenColumn SizeMD=12>
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
-            Data="@authors" TItem="Lilibre.Web.Models.Data.Author" RowSelect="@EditRow">
+            Data="@authors" TItem="Author" RowSelect="@EditRow">
             <Columns>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Author" Property="Id" Title="Id">
+                <RadzenDataGridColumn TItem="Author" Property="Id" Title="Id">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Author" Property="Name" Title="Name">
+                <RadzenDataGridColumn TItem="Author" Property="Name" Title="Name">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Author" Property="Description" Title="Description">
+                <RadzenDataGridColumn TItem="Author" Property="Description" Title="Description">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Author" Property="BirthYear" Title="Birth Year">
+                <RadzenDataGridColumn TItem="Author" Property="BirthYear" Title="Birth Year">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Author" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="Author" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
                     <Template Context="author">
 
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"

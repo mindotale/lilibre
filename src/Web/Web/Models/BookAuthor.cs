@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lilibre.Web.Models.Data
+namespace Lilibre.Web.Models
 {
     [Table("BookAuthors", Schema = "dbo")]
     public partial class BookAuthor

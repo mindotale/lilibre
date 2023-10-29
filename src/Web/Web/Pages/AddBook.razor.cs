@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using Lilibre.Web.Models;
 
 namespace Lilibre.Web.Pages
 {
@@ -34,10 +35,10 @@ namespace Lilibre.Web.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            book = new Lilibre.Web.Models.Data.Book();
+            book = new Lilibre.Web.Models.Book();
         }
         protected bool errorVisible;
-        protected Lilibre.Web.Models.Data.Book book;
+        protected Book book;
 
         protected async Task FormSubmit()
         {

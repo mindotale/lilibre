@@ -4,7 +4,7 @@
 
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save BookAuthor</RadzenAlert>
-        <RadzenTemplateForm TItem="Lilibre.Web.Models.Data.BookAuthor" Data="@bookAuthor" Visible="@(bookAuthor != null)" Submit="@FormSubmit">
+        <RadzenTemplateForm TItem="BookAuthor" Data="@bookAuthor" Visible="@(bookAuthor != null)" Submit="@FormSubmit">
           <RadzenStack>
             <RadzenFormField Text="Author" Variant="Variant.Filled">
                   <ChildContent>

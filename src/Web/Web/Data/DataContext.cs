@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+
+using Lilibre.Web.Models;
+
 using Microsoft.EntityFrameworkCore;
-using Lilibre.Web.Models.Data;
 
 namespace Lilibre.Web.Data
 {
@@ -22,33 +24,33 @@ namespace Lilibre.Web.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Lilibre.Web.Models.Data.BookAuthor>().HasKey(table => new {
+            builder.Entity<BookAuthor>().HasKey(table => new {
                 table.AuthorsId, table.BookId
             });
 
-            builder.Entity<Lilibre.Web.Models.Data.BookGenre>().HasKey(table => new {
+            builder.Entity<BookGenre>().HasKey(table => new {
                 table.BookId, table.GenresId
             });
 
-            builder.Entity<Lilibre.Web.Models.Data.BookAuthor>()
+            builder.Entity<BookAuthor>()
               .HasOne(i => i.Author)
               .WithMany(i => i.BookAuthors)
               .HasForeignKey(i => i.AuthorsId)
               .HasPrincipalKey(i => i.Id);
 
-            builder.Entity<Lilibre.Web.Models.Data.BookAuthor>()
+            builder.Entity<BookAuthor>()
               .HasOne(i => i.Book)
               .WithMany(i => i.BookAuthors)
               .HasForeignKey(i => i.BookId)
               .HasPrincipalKey(i => i.Id);
 
-            builder.Entity<Lilibre.Web.Models.Data.BookGenre>()
+            builder.Entity<BookGenre>()
               .HasOne(i => i.Book)
               .WithMany(i => i.BookGenres)
               .HasForeignKey(i => i.BookId)
               .HasPrincipalKey(i => i.Id);
 
-            builder.Entity<Lilibre.Web.Models.Data.BookGenre>()
+            builder.Entity<BookGenre>()
               .HasOne(i => i.Genre)
               .WithMany(i => i.BookGenres)
               .HasForeignKey(i => i.GenresId)
@@ -56,15 +58,15 @@ namespace Lilibre.Web.Data
             this.OnModelBuilding(builder);
         }
 
-        public DbSet<Lilibre.Web.Models.Data.Author> Authors { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
-        public DbSet<Lilibre.Web.Models.Data.BookAuthor> BookAuthors { get; set; }
+        public DbSet<BookAuthor> BookAuthors { get; set; }
 
-        public DbSet<Lilibre.Web.Models.Data.BookGenre> BookGenres { get; set; }
+        public DbSet<BookGenre> BookGenres { get; set; }
 
-        public DbSet<Lilibre.Web.Models.Data.Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }
 
-        public DbSet<Lilibre.Web.Models.Data.Genre> Genres { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {

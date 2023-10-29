@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lilibre.Web.Models.Data
+namespace Lilibre.Web.Models
 {
-    [Table("Authors", Schema = "dbo")]
-    public partial class Author
+    [Table("Genres", Schema = "dbo")]
+    public partial class Genre
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,10 +18,7 @@ namespace Lilibre.Web.Models.Data
         [Required]
         public string Description { get; set; }
 
-        [Required]
-        public int BirthYear { get; set; }
-
-        public ICollection<BookAuthor> BookAuthors { get; set; }
+        public ICollection<BookGenre> BookGenres { get; set; }
 
     }
 }

@@ -15,15 +15,15 @@
     <RadzenRow>
       <RadzenColumn SizeMD=12>
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
-            Data="@genres" TItem="Lilibre.Web.Models.Data.Genre" RowSelect="@EditRow">
+            Data="@genres" TItem="Genre" RowSelect="@EditRow">
             <Columns>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Genre" Property="Id" Title="Id">
+                <RadzenDataGridColumn TItem="Genre" Property="Id" Title="Id">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Genre" Property="Name" Title="Name">
+                <RadzenDataGridColumn TItem="Genre" Property="Name" Title="Name">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Genre" Property="Description" Title="Description">
+                <RadzenDataGridColumn TItem="Genre" Property="Description" Title="Description">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Genre" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="Genre" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
                     <Template Context="genre">
 
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"

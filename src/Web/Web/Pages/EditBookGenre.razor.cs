@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using Lilibre.Web.Models;
 
 namespace Lilibre.Web.Pages
 {
@@ -47,11 +48,11 @@ namespace Lilibre.Web.Pages
             genresForGenresId = await DataService.GetGenres();
         }
         protected bool errorVisible;
-        protected Lilibre.Web.Models.Data.BookGenre bookGenre;
+        protected BookGenre bookGenre;
 
-        protected IEnumerable<Lilibre.Web.Models.Data.Book> booksForBookId;
+        protected IEnumerable<Book> booksForBookId;
 
-        protected IEnumerable<Lilibre.Web.Models.Data.Genre> genresForGenresId;
+        protected IEnumerable<Genre> genresForGenresId;
 
         protected async Task FormSubmit()
         {

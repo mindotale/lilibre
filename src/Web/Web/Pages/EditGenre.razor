@@ -4,7 +4,7 @@
 
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Genre</RadzenAlert>
-        <RadzenTemplateForm TItem="Lilibre.Web.Models.Data.Genre" Data="@genre" Visible="@(genre != null)" Submit="@FormSubmit">
+        <RadzenTemplateForm TItem="Genre" Data="@genre" Visible="@(genre != null)" Submit="@FormSubmit">
           <RadzenStack>
             <RadzenFormField Text="Name" Variant="Variant.Filled">
                   <ChildContent>

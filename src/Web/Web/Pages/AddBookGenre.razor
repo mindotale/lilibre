@@ -3,7 +3,7 @@
 <PageTitle>Add BookGenre</PageTitle>
     <RadzenColumn SizeMD=12>
         <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save BookGenre</RadzenAlert>
-        <RadzenTemplateForm TItem="Lilibre.Web.Models.Data.BookGenre" Data="@bookGenre" Visible="@(bookGenre != null)" Submit="@FormSubmit">
+        <RadzenTemplateForm TItem="BookGenre" Data="@bookGenre" Visible="@(bookGenre != null)" Submit="@FormSubmit">
           <RadzenStack>
             <RadzenFormField Text="Book" Variant="Variant.Filled">
                   <ChildContent>

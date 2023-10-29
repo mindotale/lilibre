@@ -15,13 +15,13 @@
     <RadzenRow>
       <RadzenColumn SizeMD=12>
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
-            Data="@bookAuthors" TItem="Lilibre.Web.Models.Data.BookAuthor" RowSelect="@EditRow">
+            Data="@bookAuthors" TItem="BookAuthor" RowSelect="@EditRow">
             <Columns>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.BookAuthor" Property="Author.Name" Title="Author">
+                <RadzenDataGridColumn TItem="BookAuthor" Property="Author.Name" Title="Author">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.BookAuthor" Property="Book.Title" Title="Book">
+                <RadzenDataGridColumn TItem="BookAuthor" Property="Book.Title" Title="Book">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.BookAuthor" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="BookAuthor" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
                     <Template Context="bookAuthor">
 
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"

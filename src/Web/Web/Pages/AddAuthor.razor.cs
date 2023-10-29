@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using Lilibre.Web.Models;
 
 namespace Lilibre.Web.Pages
 {
@@ -34,10 +35,10 @@ namespace Lilibre.Web.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            author = new Lilibre.Web.Models.Data.Author();
+            author = new Lilibre.Web.Models.Author();
         }
         protected bool errorVisible;
-        protected Lilibre.Web.Models.Data.Author author;
+        protected Author author;
 
         protected async Task FormSubmit()
         {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
+using Lilibre.Web.Models;
 
 namespace Lilibre.Web.Pages
 {
@@ -33,9 +34,9 @@ namespace Lilibre.Web.Pages
         [Inject]
         public DataService DataService { get; set; }
 
-        protected IEnumerable<Lilibre.Web.Models.Data.Book> books;
+        protected IEnumerable<Book> books;
 
-        protected RadzenDataGrid<Lilibre.Web.Models.Data.Book> grid0;
+        protected RadzenDataGrid<Book> grid0;
         protected override async Task OnInitializedAsync()
         {
             books = await DataService.GetBooks();
@@ -47,12 +48,12 @@ namespace Lilibre.Web.Pages
             await grid0.Reload();
         }
 
-        protected async Task EditRow(Lilibre.Web.Models.Data.Book args)
+        protected async Task EditRow(Book args)
         {
             await DialogService.OpenAsync<EditBook>("Edit Book", new Dictionary<string, object> { {"Id", args.Id} });
         }
 
-        protected async Task GridDeleteButtonClick(MouseEventArgs args, Lilibre.Web.Models.Data.Book book)
+        protected async Task GridDeleteButtonClick(MouseEventArgs args, Book book)
         {
             try
             {

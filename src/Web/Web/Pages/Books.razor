@@ -15,23 +15,23 @@
     <RadzenRow>
       <RadzenColumn SizeMD=12>
         <RadzenDataGrid @ref="grid0" ColumnWidth="200px"  AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
-            Data="@books" TItem="Lilibre.Web.Models.Data.Book" RowSelect="@EditRow">
+            Data="@books" TItem="Book" RowSelect="@EditRow">
             <Columns>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Id" Title="Id">
+                <RadzenDataGridColumn TItem="Book" Property="Id" Title="Id">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Title" Title="Title">
+                <RadzenDataGridColumn TItem="Book" Property="Title" Title="Title">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Description" Title="Description">
+                <RadzenDataGridColumn TItem="Book" Property="Description" Title="Description">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Isbn" Title="Isbn">
+                <RadzenDataGridColumn TItem="Book" Property="Isbn" Title="Isbn">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Price" Title="Price">
+                <RadzenDataGridColumn TItem="Book" Property="Price" Title="Price">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Pages" Title="Pages">
+                <RadzenDataGridColumn TItem="Book" Property="Pages" Title="Pages">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Property="Year" Title="Year">
+                <RadzenDataGridColumn TItem="Book" Property="Year" Title="Year">
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Lilibre.Web.Models.Data.Book" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                <RadzenDataGridColumn TItem="Book" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
                     <Template Context="book">
 
                         <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
