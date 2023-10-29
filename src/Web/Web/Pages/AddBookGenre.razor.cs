@@ -1,69 +1,67 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Radzen;
-using Radzen.Blazor;
 using Lilibre.Web.Models;
 
-namespace Lilibre.Web.Pages
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
+
+using Radzen;
+
+namespace Lilibre.Web.Pages;
+
+public partial class AddBookGenre
 {
-    public partial class AddBookGenre
+    protected bool errorVisible;
+    protected BookGenre bookGenre;
+
+    protected IEnumerable<Book> booksForBookId;
+
+    protected IEnumerable<Genre> genresForGenresId;
+
+    [Inject]
+    protected IJSRuntime JSRuntime { get; set; }
+
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    protected DialogService DialogService { get; set; }
+
+    [Inject]
+    protected TooltipService TooltipService { get; set; }
+
+    [Inject]
+    protected ContextMenuService ContextMenuService { get; set; }
+
+    [Inject]
+    protected NotificationService NotificationService { get; set; }
+
+    [Inject]
+    public DataService DataService { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject]
-        protected IJSRuntime JSRuntime { get; set; }
+        bookGenre = new BookGenre();
 
-        [Inject]
-        protected NavigationManager NavigationManager { get; set; }
+        booksForBookId = await DataService.GetBooks();
 
-        [Inject]
-        protected DialogService DialogService { get; set; }
+        genresForGenresId = await DataService.GetGenres();
+    }
 
-        [Inject]
-        protected TooltipService TooltipService { get; set; }
-
-        [Inject]
-        protected ContextMenuService ContextMenuService { get; set; }
-
-        [Inject]
-        protected NotificationService NotificationService { get; set; }
-        [Inject]
-        public DataService DataService { get; set; }
-
-        protected override async Task OnInitializedAsync()
+    protected async Task FormSubmit()
+    {
+        try
         {
-            bookGenre = new Lilibre.Web.Models.BookGenre();
-
-            booksForBookId = await DataService.GetBooks();
-
-            genresForGenresId = await DataService.GetGenres();
+            await DataService.CreateBookGenre(bookGenre);
+            DialogService.Close(bookGenre);
         }
-        protected bool errorVisible;
-        protected BookGenre bookGenre;
-
-        protected IEnumerable<Book> booksForBookId;
-
-        protected IEnumerable<Genre> genresForGenresId;
-
-        protected async Task FormSubmit()
+        catch (Exception ex)
         {
-            try
-            {
-                await DataService.CreateBookGenre(bookGenre);
-                DialogService.Close(bookGenre);
-            }
-            catch (Exception ex)
-            {
-                errorVisible = true;
-            }
+            errorVisible = true;
         }
+    }
 
-        protected async Task CancelButtonClick(MouseEventArgs args)
-        {
-            DialogService.Close(null);
-        }
+    protected async Task CancelButtonClick(MouseEventArgs args)
+    {
+        DialogService.Close();
     }
 }

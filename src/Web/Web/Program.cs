@@ -1,27 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Radzen;
+using Lilibre.Web;
+using Lilibre.Web.Data;
+
 using Microsoft.EntityFrameworkCore;
+
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor().AddHubOptions(o =>
-{
-    o.MaximumReceiveMessageSize = 10 * 1024 * 1024;
-});
+builder.Services.AddServerSideBlazor().AddHubOptions(o => { o.MaximumReceiveMessageSize = 10 * 1024 * 1024; });
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
-builder.Services.AddScoped<Lilibre.Web.DataService>();
-builder.Services.AddDbContext<Lilibre.Web.Data.DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"));
-});
+builder.Services.AddScoped<DataService>();
+builder.Services.AddDbContext<DataContext>(
+    options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection")); });
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

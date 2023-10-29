@@ -1,75 +1,73 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Radzen;
-using Radzen.Blazor;
 using Lilibre.Web.Models;
 
-namespace Lilibre.Web.Pages
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
+
+using Radzen;
+
+namespace Lilibre.Web.Pages;
+
+public partial class EditBookAuthor
 {
-    public partial class EditBookAuthor
+    protected bool errorVisible;
+    protected BookAuthor bookAuthor;
+
+    protected IEnumerable<Author> authorsForAuthorsId;
+
+    protected IEnumerable<Book> booksForBookId;
+
+    [Inject]
+    protected IJSRuntime JSRuntime { get; set; }
+
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    protected DialogService DialogService { get; set; }
+
+    [Inject]
+    protected TooltipService TooltipService { get; set; }
+
+    [Inject]
+    protected ContextMenuService ContextMenuService { get; set; }
+
+    [Inject]
+    protected NotificationService NotificationService { get; set; }
+
+    [Inject]
+    public DataService DataService { get; set; }
+
+    [Parameter]
+    public int AuthorsId { get; set; }
+
+    [Parameter]
+    public int BookId { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject]
-        protected IJSRuntime JSRuntime { get; set; }
+        bookAuthor = await DataService.GetBookAuthorByAuthorsIdAndBookId(AuthorsId, BookId);
 
-        [Inject]
-        protected NavigationManager NavigationManager { get; set; }
+        authorsForAuthorsId = await DataService.GetAuthors();
 
-        [Inject]
-        protected DialogService DialogService { get; set; }
+        booksForBookId = await DataService.GetBooks();
+    }
 
-        [Inject]
-        protected TooltipService TooltipService { get; set; }
-
-        [Inject]
-        protected ContextMenuService ContextMenuService { get; set; }
-
-        [Inject]
-        protected NotificationService NotificationService { get; set; }
-        [Inject]
-        public DataService DataService { get; set; }
-
-        [Parameter]
-        public int AuthorsId { get; set; }
-
-        [Parameter]
-        public int BookId { get; set; }
-
-        protected override async Task OnInitializedAsync()
+    protected async Task FormSubmit()
+    {
+        try
         {
-            bookAuthor = await DataService.GetBookAuthorByAuthorsIdAndBookId(AuthorsId, BookId);
-
-            authorsForAuthorsId = await DataService.GetAuthors();
-
-            booksForBookId = await DataService.GetBooks();
+            await DataService.UpdateBookAuthor(AuthorsId, BookId, bookAuthor);
+            DialogService.Close(bookAuthor);
         }
-        protected bool errorVisible;
-        protected BookAuthor bookAuthor;
-
-        protected IEnumerable<Author> authorsForAuthorsId;
-
-        protected IEnumerable<Book> booksForBookId;
-
-        protected async Task FormSubmit()
+        catch (Exception ex)
         {
-            try
-            {
-                await DataService.UpdateBookAuthor(AuthorsId, BookId, bookAuthor);
-                DialogService.Close(bookAuthor);
-            }
-            catch (Exception ex)
-            {
-                errorVisible = true;
-            }
+            errorVisible = true;
         }
+    }
 
-        protected async Task CancelButtonClick(MouseEventArgs args)
-        {
-            DialogService.Close(null);
-        }
+    protected async Task CancelButtonClick(MouseEventArgs args)
+    {
+        DialogService.Close();
     }
 }

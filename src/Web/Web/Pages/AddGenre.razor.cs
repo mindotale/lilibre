@@ -1,61 +1,59 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Radzen;
-using Radzen.Blazor;
 using Lilibre.Web.Models;
 
-namespace Lilibre.Web.Pages
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
+
+using Radzen;
+
+namespace Lilibre.Web.Pages;
+
+public partial class AddGenre
 {
-    public partial class AddGenre
+    protected bool errorVisible;
+    protected Genre genre;
+
+    [Inject]
+    protected IJSRuntime JSRuntime { get; set; }
+
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    protected DialogService DialogService { get; set; }
+
+    [Inject]
+    protected TooltipService TooltipService { get; set; }
+
+    [Inject]
+    protected ContextMenuService ContextMenuService { get; set; }
+
+    [Inject]
+    protected NotificationService NotificationService { get; set; }
+
+    [Inject]
+    public DataService DataService { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        [Inject]
-        protected IJSRuntime JSRuntime { get; set; }
+        genre = new Genre();
+    }
 
-        [Inject]
-        protected NavigationManager NavigationManager { get; set; }
-
-        [Inject]
-        protected DialogService DialogService { get; set; }
-
-        [Inject]
-        protected TooltipService TooltipService { get; set; }
-
-        [Inject]
-        protected ContextMenuService ContextMenuService { get; set; }
-
-        [Inject]
-        protected NotificationService NotificationService { get; set; }
-        [Inject]
-        public DataService DataService { get; set; }
-
-        protected override async Task OnInitializedAsync()
+    protected async Task FormSubmit()
+    {
+        try
         {
-            genre = new Lilibre.Web.Models.Genre();
+            await DataService.CreateGenre(genre);
+            DialogService.Close(genre);
         }
-        protected bool errorVisible;
-        protected Genre genre;
-
-        protected async Task FormSubmit()
+        catch (Exception ex)
         {
-            try
-            {
-                await DataService.CreateGenre(genre);
-                DialogService.Close(genre);
-            }
-            catch (Exception ex)
-            {
-                errorVisible = true;
-            }
+            errorVisible = true;
         }
+    }
 
-        protected async Task CancelButtonClick(MouseEventArgs args)
-        {
-            DialogService.Close(null);
-        }
+    protected async Task CancelButtonClick(MouseEventArgs args)
+    {
+        DialogService.Close();
     }
 }
