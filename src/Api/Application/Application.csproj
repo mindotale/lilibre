@@ -4,11 +4,8 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<RootNamespace>Lilibre.Application</RootNamespace>
-		<AssemblyName>Lilibre.Application</AssemblyName>
+    <RootNamespace>Lilibre.Application</RootNamespace>
+    <AssemblyName>Lilibre.Application</AssemblyName>
 	</PropertyGroup>
 
 </Project>

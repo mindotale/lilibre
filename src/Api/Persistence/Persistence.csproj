@@ -4,11 +4,8 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<RootNamespace>Lilibre.Persistence</RootNamespace>
-		<AssemblyName>Lilibre.Persistence</AssemblyName>
+    <RootNamespace>Lilibre.Persistence</RootNamespace>
+    <AssemblyName>Lilibre.Persistence</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,10 +22,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Application\Application.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Migrations\" />
 	</ItemGroup>
 
 </Project>

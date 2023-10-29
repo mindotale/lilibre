@@ -3,7 +3,10 @@
     <NoWarn>CS0168,CS1998,BL9993,CS0649,CS0436,0436</NoWarn>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Lilibre.Web</RootNamespace>
+    <AssemblyName>Lilibre.Web</AssemblyName>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Radzen.Blazor" Version="*" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
