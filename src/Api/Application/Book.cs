@@ -17,4 +17,6 @@ public sealed class Book : Entity<int>
     public int Pages { get; set; }
 
     public int Year { get; set; }
+
+    public  Publisher Publisher { get; set; } = new();
 }
