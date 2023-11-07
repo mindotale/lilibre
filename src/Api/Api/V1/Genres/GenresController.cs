@@ -84,3 +84,11 @@ public sealed record Genre(int Id, string Name, string Description);
 public sealed record CreateGenre(string Name, string Description);
 
 public sealed record UpdateGenre(string Name, string Description);
+
+public static class FromApplicationMappingExtensions
+{
+    public static Genre ToGenre(this Application.Genre genre)
+    {
+        return new Genre(genre.Id, genre.Name, genre.Description);
+    }
+}

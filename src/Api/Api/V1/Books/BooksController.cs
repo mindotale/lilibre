@@ -1,4 +1,6 @@
-﻿using Lilibre.Application;
+﻿using Lilibre.Api.V1.Authors;
+using Lilibre.Api.V1.Genres;
+using Lilibre.Application;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -176,3 +178,20 @@ public sealed record UpdateBook(
     decimal Price,
     int Pages,
     int Year);
+
+public static class FromApplicationMappingExtensions
+{
+    public static Book ToBook(this Application.Book book)
+    {
+        return new Book(
+            book.Id,
+            book.Title,
+            book.Authors.Select(a => a.ToAuthor()),
+            book.Genres.Select(g => g.ToGenre()),
+            book.Description,
+            book.Isbn,
+            book.Price,
+            book.Pages,
+            book.Year);
+    }
+}
