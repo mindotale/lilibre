@@ -86,3 +86,11 @@ public sealed record Author(int Id, string Name, string Description, int BirthYe
 public sealed record CreateAuthor(string Name, string Description, int BirthYear);
 
 public sealed record UpdateAuthor(string Name, string Description, int BirthYear);
+
+public static class FromApplicationMappingExtensions
+{
+    public static Author ToAuthor(this Application.Author author)
+    {
+        return new Author(author.Id, author.Name, author.Description, author.BirthYear);
+    }
+}

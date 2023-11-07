@@ -25,6 +25,7 @@ public static class PersistenceConfigurationExtensions
         services.AddScoped<IRepository<Book, int>, BookRepository>();
         services.AddScoped<IRepository<Author, int>, AuthorRepository>();
         services.AddScoped<IRepository<Genre, int>, GenreRepository>();
+        services.AddScoped<IRepository<Publisher, int>, PublisherRepository>();
 
         return services;
     }
