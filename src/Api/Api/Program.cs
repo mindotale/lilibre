@@ -1,11 +1,15 @@
 using Lilibre.Api.Configurations;
+using Lilibre.Api.ModelBinders;
 using Lilibre.Persistence;
-
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+    options =>
+    {
+        options.ModelBinderProviders.Insert(0, new TextPlainToJsonModelBinderProvider());
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
