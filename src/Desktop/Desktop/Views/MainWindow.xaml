@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Desktop"
-        xmlns:viewModel="clr-namespace:Desktop.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Author CRUD"
@@ -13,50 +11,52 @@
     <GroupBox Header="Student Form" Margin="10">
       <Grid Height="150">
         <Grid.RowDefinitions>
-          <RowDefinition Height="1*"/>
-          <RowDefinition Height="1*"/>
-          <RowDefinition Height="1*"/>
+          <RowDefinition Height="1*" />
+          <RowDefinition Height="1*" />
+          <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="100"/>
-          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Content="Name" HorizontalAlignment="Left" 
-                       VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0"/>
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="TextBoxName" Height="27" 
-                       Text="{Binding Path=AuthorRecord.Name, Mode=TwoWay}"  Margin="5"  Width="300" HorizontalAlignment="Left"/>
-        <Label Content="BirthYear" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
-                       Grid.Row="1" Grid.Column="0"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxBirthYear" Height="27" 
-                       Text="{Binding Path=AuthorRecord.BirthYear, Mode=TwoWay}" Margin="5" Width="70" HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="TextBlockId" 
-                       Visibility="Hidden" Text="{Binding Path=AuthorRecord.Id, Mode=TwoWay}"/>
-        <Label Content="Description" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
-                       Grid.Row="2" Grid.Column="0" />
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDescription" Height="27" 
-                       Text="{Binding Path=AuthorRecord.Description, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
+        <Label Content="Name" HorizontalAlignment="Left"
+               VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="TextBoxName" Height="27"
+                 Text="{Binding Path=AuthorRecord.Name, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left" />
+        <Label Content="BirthYear" HorizontalAlignment="Left" VerticalContentAlignment="Center"
+               Grid.Row="1" Grid.Column="0" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TextBoxBirthYear" Height="27"
+                 Text="{Binding Path=AuthorRecord.BirthYear, Mode=TwoWay}" Margin="5" Width="70"
+                 HorizontalAlignment="Left" />
+        <TextBlock Grid.Row="1" Grid.Column="1" x:Name="TextBlockId"
+                   Visibility="Hidden" Text="{Binding Path=AuthorRecord.Id, Mode=TwoWay}" />
+        <Label Content="Description" HorizontalAlignment="Left" VerticalContentAlignment="Center"
+               Grid.Row="2" Grid.Column="0" />
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="TextBoxDescription" Height="27"
+                 Text="{Binding Path=AuthorRecord.Description, Mode=TwoWay}" Margin="5" Width="300"
+                 HorizontalAlignment="Left" />
       </Grid>
     </GroupBox>
     <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
       <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                    Command="{Binding SaveCommand}"/>
-      <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                    Command="{Binding ResetCommand}" Margin="5,0,10,0"/>
+              Command="{Binding SaveCommand}" />
+      <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80"
+              Command="{Binding ResetCommand}" Margin="5,0,10,0" />
     </StackPanel>
     <StackPanel Height="210">
       <DataGrid x:Name="DataGridStudents" AutoGenerateColumns="False"
-                      ItemsSource="{Binding AuthorRecord.AuthorRecords}" CanUserAddRows="False" Height="200" Margin="10">
+                ItemsSource="{Binding AuthorRecord.AuthorRecords}" CanUserAddRows="False" Height="200" Margin="10">
         <DataGrid.Columns>
-          <DataGridTextColumn Header="Name" Binding="{Binding Path=Id}" Visibility="Hidden"/>
-          <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
-          <DataGridTextColumn Header="BirthYear" Binding="{Binding Path=BirthYear}" Width="50"  IsReadOnly="True"/>
-          <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="180" IsReadOnly="True"/>
+          <DataGridTextColumn Header="Name" Binding="{Binding Path=Id}" Visibility="Hidden" />
+          <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="100" IsReadOnly="True" />
+          <DataGridTextColumn Header="BirthYear" Binding="{Binding Path=BirthYear}" Width="50" IsReadOnly="True" />
+          <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="180" IsReadOnly="True" />
           <DataGridTemplateColumn Width="50">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=Id}"
-                                        Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}"/>
+                        Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType=Window}}" />
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
@@ -64,8 +64,8 @@
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=Id}"
-                                        Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}"/>
+                        Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType=Window}}" />
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
