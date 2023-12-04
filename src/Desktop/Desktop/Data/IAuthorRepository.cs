@@ -6,13 +6,13 @@ namespace Desktop.Data;
 
 public interface IAuthorRepository
 {
-    Task<IEnumerable<Author>> GetAllAsync();
+    IEnumerable<Author> GetAll();
 
-    Task<Author?> GetAsync(int id);
+    Author? GetById(int id);
 
-    Task<Author> CreateAsync(Author author);
+    Author Add(Author author);
 
-    Task<Author> UpdateAsync(Author author);
+    Author Update(Author author);
 
-    Task DeleteAsync(int id);
+    void Remove(int id);
 }
