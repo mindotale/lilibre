@@ -1,6 +1,9 @@
 ﻿using Lilibre.Application;
+using Lilibre.Contracts.V1.Publishers;
 
 using Microsoft.AspNetCore.Mvc;
+
+using Publisher = Lilibre.Contracts.V1.Publishers.Publisher;
 
 namespace Lilibre.Api.V1.Publishers;
 
@@ -81,12 +84,6 @@ public class PublisherController : ControllerBase
         return NoContent();
     }
 }
-
-public sealed record Publisher(int Id, string Name, string Description, string Website);
-
-public sealed record CreatePublisher(string Name, string Description, string Website);
-
-public sealed record UpdatePublisher(string Name, string Description, string Website);
 
 internal static class PublisherExtensions
 {

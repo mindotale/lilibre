@@ -2,12 +2,11 @@
 using Lilibre.Api.V1.Genres;
 using Lilibre.Api.V1.Publishers;
 using Lilibre.Application;
+using Lilibre.Contracts.V1.Books;
 
 using Microsoft.AspNetCore.Mvc;
 
-using Author = Lilibre.Api.V1.Authors.Author;
-using Genre = Lilibre.Api.V1.Genres.Genre;
-using Publisher = Lilibre.Api.V1.Publishers.Publisher;
+using Book = Lilibre.Contracts.V1.Books.Book;
 
 namespace Lilibre.Api.V1.Books;
 
@@ -165,40 +164,6 @@ public class BooksController : ControllerBase
         return NoContent();
     }
 }
-
-public sealed record Book(
-    int Id,
-    string Title,
-    IEnumerable<Author> Authors,
-    IEnumerable<Genre> Genres,
-    string Description,
-    string Isbn,
-    decimal Price,
-    int Pages,
-    int Year,
-    Publisher Publisher);
-
-public sealed record CreateBook(
-    string Title,
-    IEnumerable<int> AuthorIds,
-    IEnumerable<int> GenreIds,
-    string Description,
-    string Isbn,
-    decimal Price,
-    int Pages,
-    int Year,
-    int PublisherId);
-
-public sealed record UpdateBook(
-    string Title,
-    IEnumerable<int> AuthorIds,
-    IEnumerable<int> GenreIds,
-    string Description,
-    string Isbn,
-    decimal Price,
-    int Pages,
-    int Year,
-    int PublisherId);
 
 public static class FromApplicationMappingExtensions
 {

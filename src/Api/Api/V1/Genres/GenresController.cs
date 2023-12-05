@@ -1,6 +1,9 @@
 ﻿using Lilibre.Application;
+using Lilibre.Contracts.V1.Genres;
 
 using Microsoft.AspNetCore.Mvc;
+
+using Genre = Lilibre.Contracts.V1.Genres.Genre;
 
 namespace Lilibre.Api.V1.Genres;
 
@@ -78,12 +81,6 @@ public class GenresController : ControllerBase
         return NoContent();
     }
 }
-
-public sealed record Genre(int Id, string Name, string Description);
-
-public sealed record CreateGenre(string Name, string Description);
-
-public sealed record UpdateGenre(string Name, string Description);
 
 public static class FromApplicationMappingExtensions
 {

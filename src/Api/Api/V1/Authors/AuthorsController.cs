@@ -1,6 +1,9 @@
 ﻿using Lilibre.Application;
+using Lilibre.Contracts.V1.Authors;
 
 using Microsoft.AspNetCore.Mvc;
+
+using Author = Lilibre.Contracts.V1.Authors.Author;
 
 namespace Lilibre.Api.V1.Authors;
 
@@ -80,12 +83,6 @@ public class AuthorsController : ControllerBase
         return NoContent();
     }
 }
-
-public sealed record Author(int Id, string Name, string Description, int BirthYear);
-
-public sealed record CreateAuthor(string Name, string Description, int BirthYear);
-
-public sealed record UpdateAuthor(string Name, string Description, int BirthYear);
 
 public static class FromApplicationMappingExtensions
 {
