@@ -12,15 +12,15 @@ public class AuthorViewModel
 {
     private readonly IAuthorRepository _repository;
     private readonly Author _authorEntity;
-    private ICommand _saveCommand;
-    private ICommand _resetCommand;
-    private ICommand _editCommand;
-    private ICommand _deleteCommand;
+    private ICommand _saveCommand = null!;
+    private ICommand _resetCommand = null!;
+    private ICommand _editCommand = null!;
+    private ICommand _deleteCommand = null!;
 
     public AuthorViewModel()
     {
         _authorEntity = new Author();
-        _repository = new InMemoryAuthorRepository();
+        _repository = new WebAuthorRepository(new WebAuthorRepositoryConfig("http://localhost:5000/api/v1/"));
         AuthorRecord = new AuthorRecord();
         GetAll();
     }
