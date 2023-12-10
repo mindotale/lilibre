@@ -10,6 +10,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
+    position: relative;
   }
   
   .author-info h3 {
@@ -47,3 +48,24 @@
     background-color: darken(#3498db, 10%);
   }
   
+  .author-create {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .btn-create {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2ecc71;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-create:hover {
+    background-color: darken(#2ecc71, 10%);
+  }
