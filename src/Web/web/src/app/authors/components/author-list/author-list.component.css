@@ -1,0 +1,49 @@
+.author-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .author-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .author-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .author-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .btn-details,
+  .btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-details {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .btn-details:hover,
+  .btn-delete:hover {
+    background-color: darken(#3498db, 10%);
+  }
+  

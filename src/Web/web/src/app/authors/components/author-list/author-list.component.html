@@ -1,8 +1,14 @@
 <h2>Authors List</h2>
-<ul>
-  <li *ngFor="let author of authors">
-    <span>{{ author.name }}</span>
-    <button (click)="viewAuthorDetails(author.id)">Details</button>
-    <button (click)="deleteAuthor(author.id)">Delete</button>
-  </li>
-</ul>
+<div class="author-list">
+  <div *ngFor="let author of authors" class="author-card">
+    <div class="author-info">
+      <h3>{{ author.name }}</h3>
+      <p><strong>Description:</strong> {{ author.description }}</p>
+      <p><strong>Birth Year:</strong> {{ author.birthYear }}</p>
+    </div>
+    <div class="author-actions">
+      <button (click)="viewAuthorDetails(author.id)" class="btn-details">Details</button>
+      <button (click)="deleteAuthor(author.id)" class="btn-delete">Delete</button>
+    </div>
+  </div>
+</div>

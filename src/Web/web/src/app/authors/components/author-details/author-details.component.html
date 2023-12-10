@@ -1,7 +1,11 @@
-<h2>Author Details</h2>
-<div *ngIf="author">
-  <p>Name: {{ author.name }}</p>
-  <p>Description: {{ author.description }}</p>
-  <p>Birth Year: {{ author.birthYear }}</p>
-  <button (click)="editAuthor(author.id)">Edit</button>
+<div class="author-details">
+  <h2>Author Details</h2>
+  <div *ngIf="author" class="author-info">
+    <h3>{{ author.name }}</h3>
+    <p><strong>Description:</strong> {{ author.description }}</p>
+    <p><strong>Birth Year:</strong> {{ author.birthYear }}</p>
+    <div class="author-actions">
+      <button (click)="editAuthor(author.id)" class="btn-edit">Edit</button>
+    </div>
+  </div>
 </div>
