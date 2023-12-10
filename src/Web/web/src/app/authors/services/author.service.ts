@@ -7,7 +7,7 @@ import { Author } from '../models/author.model';
   providedIn: 'root'
 })
 export class AuthorService {
-  private apiUrl = 'your_api_url';
+  private apiUrl = 'http://localhost:5000';
 
   constructor(private http: HttpClient) { }
 
