@@ -1,1 +1,6 @@
-<p>author-details works!</p>
+<h2>Author Details</h2>
+<div *ngIf="author">
+  <p>Name: {{ author.name }}</p>
+  <p>Description: {{ author.description }}</p>
+  <p>Birth Year: {{ author.birthYear }}</p>
+</div>

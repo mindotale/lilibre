@@ -1,1 +1,8 @@
-<p>author-list works!</p>
+<h2>Authors List</h2>
+<ul>
+  <li *ngFor="let author of authors">
+    <span>{{ author.name }}</span>
+    <button (click)="viewAuthorDetails(author.id)">Details</button>
+    <button (click)="deleteAuthor(author.id)">Delete</button>
+  </li>
+</ul>
