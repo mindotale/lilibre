@@ -1,15 +1,10 @@
 using Lilibre.Api.Configurations;
-using Lilibre.Api.ModelBinders;
 using Lilibre.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(
-    options =>
-    {
-        options.ModelBinderProviders.Insert(0, new TextPlainToJsonModelBinderProvider());
-    });
+builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
