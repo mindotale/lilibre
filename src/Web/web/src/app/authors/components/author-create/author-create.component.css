@@ -38,4 +38,10 @@
   .btn-create:hover {
     background-color: darken(#2ecc71, 10%);
   }
+
+  .create-author .author-form div {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.9em;
+  }
   

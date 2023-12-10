@@ -1,14 +1,32 @@
 <div class="update-author">
   <h2>Update Author</h2>
-  <form (submit)="updateAuthor()" class="author-form">
+  <form (submit)="updateAuthor()" [formGroup]="authorForm" class="author-form">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="author.name" required><br>
+    <input type="text" id="name" name="name" formControlName="name" required>
+    <div *ngIf="authorForm.get('name')?.hasError('required') && authorForm.get('name')?.touched" class="error">
+      Name is required.
+    </div>
+    <div *ngIf="authorForm.get('name')?.hasError('maxlength') && authorForm.get('name')?.touched" class="error">
+      Name cannot exceed 100 characters.
+    </div>
     
     <label for="description">Description:</label>
-    <textarea id="description" name="description" [(ngModel)]="author.description" required></textarea><br>
+    <textarea id="description" name="description" formControlName="description" required></textarea>
+    <div *ngIf="authorForm.get('description')?.hasError('required') && authorForm.get('description')?.touched" class="error">
+      Description is required.
+    </div>
     
     <label for="birthYear">Birth Year:</label>
-    <input type="number" id="birthYear" name="birthYear" [(ngModel)]="author.birthYear" required><br>
+    <input type="number" id="birthYear" name="birthYear" formControlName="birthYear" required>
+    <div *ngIf="authorForm.get('birthYear')?.hasError('required') && authorForm.get('birthYear')?.touched" class="error">
+      Birth Year is required.
+    </div>
+    <div *ngIf="authorForm.get('birthYear')?.hasError('min') && authorForm.get('birthYear')?.touched" class="error">
+      Birth Year must be greater than or equal to 1000.
+    </div>
+    <div *ngIf="authorForm.get('birthYear')?.hasError('max') && authorForm.get('birthYear')?.touched" class="error">
+      Birth Year cannot be greater than the current year.
+    </div>
     
     <button type="submit" class="btn-update">Update</button>
   </form>

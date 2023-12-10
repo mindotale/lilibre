@@ -39,3 +39,8 @@
     background-color: darken(#3498db, 10%);
   }
   
+  .update-author .author-form .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.9em;
+  }
