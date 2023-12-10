@@ -15,8 +15,7 @@ public class PublisherRepository : IRepository<Publisher, int>
 
     public async Task<Publisher?> GetByIdAsync(int id)
     {
-        return await _context.Publishers
-            .FirstOrDefaultAsync(p => p.Id == id);
+        return await _context.Publishers.FindAsync(id);
     }
 
     public async Task<IList<Publisher>> GetAllAsync(int offset, int limit)
@@ -29,14 +28,14 @@ public class PublisherRepository : IRepository<Publisher, int>
 
     public async Task<int> AddAsync(Publisher entity)
     {
-        await _context.AddAsync(entity);
+        await _context.Publishers.AddAsync(entity);
         await _context.SaveChangesAsync();
         return entity.Id;
     }
 
     public async Task UpdateAsync(Publisher entity)
     {
-        _context.Update(entity);
+        _context.Publishers.Update(entity);
         await _context.SaveChangesAsync();
     }
 
@@ -48,7 +47,7 @@ public class PublisherRepository : IRepository<Publisher, int>
             return false;
         }
 
-        _context.Remove(entity);
+        _context.Publishers.Remove(entity);
         await _context.SaveChangesAsync();
         return true;
     }
