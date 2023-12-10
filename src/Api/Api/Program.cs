@@ -10,6 +10,16 @@ builder.Services.AddControllers(
     {
         options.ModelBinderProviders.Insert(0, new TextPlainToJsonModelBinderProvider());
     });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -25,6 +35,8 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
+app.UseCors("AllowAll");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
@@ -35,3 +47,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
