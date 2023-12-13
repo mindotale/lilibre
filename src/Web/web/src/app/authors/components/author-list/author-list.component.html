@@ -2,7 +2,7 @@
 <div class="author-list">
   <div *ngFor="let author of authors" class="author-card">
     <div class="author-info">
-      <h3>{{ author.name }}</h3>
+      <h3>{{ author.name | special }}</h3>
       <p><strong>Description:</strong> {{ author.description }}</p>
       <p><strong>Birth Year:</strong> {{ author.birthYear }}</p>
     </div>

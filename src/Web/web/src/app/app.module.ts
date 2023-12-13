@@ -11,6 +11,7 @@ import { AuthorDetailsComponent } from './authors/components/author-details/auth
 import { AuthorCreateComponent } from './authors/components/author-create/author-create.component';
 import { AuthorUpdateComponent } from './authors/components/author-update/author-update.component';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+import { SpecialPipe } from './common/pipes/special.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
     AuthorListComponent,
     AuthorDetailsComponent,
     AuthorCreateComponent,
-    AuthorUpdateComponent
+    AuthorUpdateComponent,
+    SpecialPipe
   ],
   imports: [
     BrowserModule,
