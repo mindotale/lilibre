@@ -10,7 +10,7 @@ import { AuthorListComponent } from './authors/components/author-list/author-lis
 import { AuthorDetailsComponent } from './authors/components/author-details/author-details.component';
 import { AuthorCreateComponent } from './authors/components/author-create/author-create.component';
 import { AuthorUpdateComponent } from './authors/components/author-update/author-update.component';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 @NgModule({
   declarations: [
