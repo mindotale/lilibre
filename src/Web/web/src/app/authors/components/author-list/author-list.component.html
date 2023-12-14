@@ -1,0 +1,19 @@
+<h2>Authors List</h2>
+<div class="author-list">
+  <div *ngFor="let author of authors" class="author-card">
+    <div class="author-info">
+      <h3>{{ author.name | special }}</h3>
+      <p><strong>Description:</strong> {{ author.description }}</p>
+      <p><strong>Birth Year:</strong> {{ author.birthYear }}</p>
+    </div>
+    <div class="author-actions">
+      <button (click)="viewAuthorDetails(author.id)" class="btn-details">Details</button>
+      <button (click)="deleteAuthor(author.id)" class="btn-delete">Delete</button>
+    </div>
+  </div>
+  <div class="author-card">
+    <div class="author-create">
+      <a routerLink="/create" class="btn-create">Create</a>
+    </div>
+  </div>
+</div>

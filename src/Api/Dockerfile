@@ -6,10 +6,12 @@ WORKDIR /app
 # Copy and restore project files
 COPY Application/Application.csproj Application/
 COPY Persistence/Persistence.csproj Persistence/
+COPY Contracts/Contracts.csproj Contracts/
 COPY Api/Api.csproj Api/
 
 RUN dotnet restore Application/Application.csproj
 RUN dotnet restore Persistence/Persistence.csproj
+RUN dotnet restore Contracts/Contracts.csproj
 RUN dotnet restore Api/Api.csproj
 
 # Copy the remaining source code

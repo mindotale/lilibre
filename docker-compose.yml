@@ -27,3 +27,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000:80
+
+  web:
+    container_name: web
+    depends_on:
+      - api
+    build:
+      context: ./src/Web/web/
+      dockerfile: Dockerfile
+    ports:
+      - 5001:80

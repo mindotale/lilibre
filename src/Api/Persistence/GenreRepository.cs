@@ -32,14 +32,14 @@ public class BookRepository : IRepository<Book, int>
 
     public async Task<int> AddAsync(Book entity)
     {
-        await _context.AddAsync(entity);
+        await _context.Books.AddAsync(entity);
         await _context.SaveChangesAsync();
         return entity.Id;
     }
 
     public async Task UpdateAsync(Book entity)
     {
-        _context.Update(entity);
+        _context.Books.Update(entity);
         await _context.SaveChangesAsync();
     }
 
@@ -51,7 +51,7 @@ public class BookRepository : IRepository<Book, int>
             return false;
         }
 
-        _context.Remove(entity);
+        _context.Books.Remove(entity);
         await _context.SaveChangesAsync();
         return true;
     }

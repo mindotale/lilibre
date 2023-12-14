@@ -1,0 +1,46 @@
+.update-author {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .author-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .author-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .author-form input[type="text"],
+  .author-form textarea,
+  .author-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-update {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-update:hover {
+    background-color: darken(#3498db, 10%);
+  }
+  
+  .update-author .author-form .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.9em;
+  }

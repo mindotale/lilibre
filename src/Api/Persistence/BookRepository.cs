@@ -15,36 +15,36 @@ public class GenreRepository : IRepository<Genre, int>
 
     public async Task<Genre?> GetByIdAsync(int id)
     {
-        return await _context.FindAsync<Genre>(id);
+        return await _context.Genres.FindAsync(id);
     }
 
     public async Task<IList<Genre>> GetAllAsync(int offset, int limit)
     {
-        return await _context.Set<Genre>().Skip(offset).Take(limit).ToListAsync();
+        return await _context.Genres.Skip(offset).Take(limit).ToListAsync();
     }
 
     public async Task<int> AddAsync(Genre entity)
     {
-        await _context.AddAsync(entity);
+        await _context.Genres.AddAsync(entity);
         await _context.SaveChangesAsync();
         return entity.Id;
     }
 
     public async Task UpdateAsync(Genre entity)
     {
-        _context.Update(entity);
+        _context.Genres.Update(entity);
         await _context.SaveChangesAsync();
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var entity = await _context.FindAsync<Genre>(id);
+        var entity = await _context.Genres.FindAsync(id);
         if (entity is null)
         {
             return false;
         }
 
-        _context.Remove(entity);
+        _context.Genres.Remove(entity);
         await _context.SaveChangesAsync();
         return true;
     }

@@ -1,15 +1,20 @@
 using Lilibre.Api.Configurations;
-using Lilibre.Api.ModelBinders;
 using Lilibre.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(
-    options =>
+builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
     {
-        options.ModelBinderProviders.Insert(0, new TextPlainToJsonModelBinderProvider());
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -25,6 +30,8 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
+app.UseCors("AllowAll");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
@@ -35,3 +42,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
